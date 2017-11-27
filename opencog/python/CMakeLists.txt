@@ -14,6 +14,7 @@ INSTALL (FILES
 	web/api/apischeme.py
 	web/api/apishell.py
 	web/api/apitypes.py
+	web/api/apighost.py
 	web/api/__init__.py
 	web/api/mappers.py
 	web/api/restapi.py
