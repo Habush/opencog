@@ -144,16 +144,6 @@ const SCValuations& Valuations::get_scvaluations(const Handle& var) const
 	throw RuntimeException(TRACE_INFO, "There's likely a bug");
 }
 
-std::string oc_to_string(const SCValuations& scv, const std::string& indent)
-{
-	std::stringstream ss;
-	ss << indent << "variables:" << std::endl
-	   << oc_to_string(scv.variables, indent + OC_TO_STRING_INDENT);
-	ss << indent << "values:" << std::endl
-	   << oc_to_string(scv.values, indent + OC_TO_STRING_INDENT);
-	return ss.str();
-}
-
 std::string oc_to_string(const SCValuations& scv)
 {
 	return oc_to_string(scv, "");
@@ -167,7 +157,7 @@ std::string oc_to_string(const SCValuationsSet& scvs, const std::string& indent)
 	for (const auto& scv : scvs)
 	{
 		ss << indent << "scvaluations [" << i << "]:" << std::endl
-		   << oc_to_string(scv, indent + OC_TO_STRING_INDENT);
+		   << oc_to_string(scv, indent );
 		++i;
 	}
 	return ss.str();
@@ -176,16 +166,6 @@ std::string oc_to_string(const SCValuationsSet& scvs, const std::string& indent)
 std::string oc_to_string(const SCValuationsSet& scvs)
 {
 	return oc_to_string(scvs, "");
-}
-
-std::string oc_to_string(const Valuations& valuations, const std::string& indent)
-{
-	std::stringstream ss;
-	ss << indent << "variables:" << std::endl
-	   << oc_to_string(valuations.variables, indent + OC_TO_STRING_INDENT);
-	ss << indent << "scvaluations set:" << std::endl
-	   << oc_to_string(valuations.scvs, indent + OC_TO_STRING_INDENT);
-	return ss.str();
 }
 
 std::string oc_to_string(const Valuations& valuations)
@@ -201,9 +181,9 @@ std::string oc_to_string(const HandleValuationsMap& h2vals, const std::string& i
 	for (const auto& hv : h2vals)
 	{
 		ss << indent << "atom [" << i << "]:" << std::endl
-		   << oc_to_string(hv.first, indent + OC_TO_STRING_INDENT);
+		   << oc_to_string(hv.first, indent);
 		ss << indent << "valuations [" << i << "]:" << std::endl
-		   << oc_to_string(hv.second, indent + OC_TO_STRING_INDENT);
+		   << oc_to_string(hv.second, indent );
 		++i;
 	}
 	return ss.str();

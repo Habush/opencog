@@ -123,9 +123,9 @@ std::string oc_to_string(const HandleTree& ht, const std::string& indent)
 		int depth = ht.depth(it);
 		std::string node_indent = indent;
 		dorepeat(depth)
-			node_indent += OC_TO_STRING_INDENT;
+			node_indent += "";
 		ss << node_indent << "atom[" << i << ",depth=" << ht.depth(it) << "]:"
-		   << std::endl << oc_to_string(*it, node_indent + OC_TO_STRING_INDENT);
+		   << std::endl << oc_to_string(*it, node_indent );
 		++i;
 	}
 	return ss.str();
@@ -144,7 +144,7 @@ std::string oc_to_string(const HandleMapTree& hmt, const std::string& indent)
 	unsigned i = 0;
 	for (HandleMapTree::iterator it = hmt.begin(); it != hmt.end(); ++it) {
 		ss << indent << "handle map[" << i << ",depth=" << hmt.depth(it) << "]:"
-		   << std::endl << oc_to_string(*it, indent + OC_TO_STRING_INDENT);
+		   << std::endl << oc_to_string(*it, indent );
 		++i;
 	}
 	return ss.str();
@@ -162,9 +162,9 @@ std::string oc_to_string(const HandleHandleTreeMap& hhtm, const std::string& ind
 	unsigned i = 0;
 	for (const auto& hht : hhtm) {
 		ss << indent << "atom[" << i << "]:" << std::endl
-		   << oc_to_string(hht.first, indent + OC_TO_STRING_INDENT);
+		   << oc_to_string(hht.first, indent );
 		ss << indent << "handle tree[" << i << "]:" << std::endl
-		   << oc_to_string(hht.second, indent + OC_TO_STRING_INDENT);
+		   << oc_to_string(hht.second, indent );
 		++i;
 	}
 	return ss.str();
